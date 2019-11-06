@@ -28,6 +28,7 @@ const decorateRow = (row) => {
     row.readMonth = Number(dateElements[1]);
     row.readYear = Number(dateElements[0]);
     row.ratingNumber = { '--':1, '-':2, '':3, '+':4, '++':5 }[row.rating];
+    row.ratingEmoji = { '--':'︎︎☠☠', '-':'☠︎', '':'', '+':'★', '++':'★★' }[row.rating];
     row.pages = Number(row.pages);
     row.authors = row.authors.split(',').map(d=>d.trim()).join(', ');
     row['non-fiction'] = (row['non-fiction']!='');
@@ -42,6 +43,10 @@ const years = splitBy(books, (d) => d.readYear);
 
 const structuredData = years.map(year=>{
     year.months = splitBy(year.data, (d) => d.readMonth);
+    year.count = year.data.length;
+    year.pageCount = year.data.reduce((sum,current)=>{
+        return sum + Number(current.pages);
+    }, 0)
     return year;
 }).filter(d=>d.key!='0')
 //make an html page
@@ -51,9 +56,9 @@ writeFileSync(
     './index.html', 
     render('./templates/index.html', {
         years,
-        ratingMeanings,
-        monthName:[null,'January','February','March','April','May','June','July','August','September','October','November','December'],
-        title: 'Reading list'
+        ratingSymbols: ['★★','★','☠︎','☠☠'],
+        monthName: [null,'January','February','March','April','May','June','July','August','September','October','November','December'],
+        title: 'Books'
     })
 );
 

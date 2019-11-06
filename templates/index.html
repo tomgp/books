@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>{{ title }} - Tom Pearson</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
         body {
             font-family: sans-serif;
@@ -8,20 +9,43 @@
             margin-left:10%;
             margin-right:10%;
         }
+        .rating{
+            color:rgb(255, 40, 0);
+        }
+        .rating-word{
+            border-bottom: solid 1px rgb(0,40,255);
+        }
 
+        [data-published]:hover{
+            color:white;
+            background:rgb(255,40,0);
+            cursor:pointer;
+        }
+        [data-rating]:hover{
+            color:white;
+            background:rgb(255,40,0);
+            cursor:pointer;
+        }
+        [data-author]:hover{
+            color:white;
+            background:rgb(255,40,0);
+            cursor:pointer;
+        }
         ul {
             padding: 0px;
             margin: 0px;
             list-style-type: none;
         }
 
-        h1 {
-
-        }
+        h1 { }
 
         h2 {
             color: rgb(255, 40, 0);
-            padding-left: 30px;
+            margin-top:60px;
+            margin-bottom: 0px;
+        }
+        .year-stats{
+            color: rgb(255, 40, 0);
         }
 
         h3 { 
@@ -29,7 +53,7 @@
             font-size: small;
             font-weight: normal;
             font-style: italic;
-            padding-left: 30px;
+            margin-bottom: 4px;
         }
         li{
             padding-bottom:5px;
@@ -40,27 +64,46 @@
         .book-author{
             font-style:italic;
         }
+        a{
+            color:rgb(255,40,0);
+        }
+        .year-stats{
+            border-bottom: 1px solid rgb(255,40,0);
+            padding-bottom:4px;
+        }
         </style>
     </head>
     <body>
     <h1>{{ title }}</h1>
-    <div>INTRO</div>
-    <div>KEY</div>
+    <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
+    Then I decided a spreadsheet would do just fine. <a href="/books/reading-list.csv">Here it is</a>. 
+    Below you can see that spreadsheet turned into HTML an SVGs.</p>
+    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them, but 
+    <span class="rating" data-rating="5" >{{ratingSymbols[0]}}</span> are espescially recomended, 
+    <span class="rating" data-rating="4" >{{ratingSymbols[1]}}</span> are recomended if you like that kind of thing,
+    <span class="rating" data-rating="2" >{{ratingSymbols[2]}}</span> are only for people who are <i>really</i> into that kind of thing, and
+    <span class="rating" data-rating="1" >{{ratingSymbols[3]}}</span> should be avoided</p>
+    <p>Sometimes I read things more than once so they appear more than once.</p>
+    </div>
     <div class="reading-line"></div>
     <div class="publishing-line"></div>
     {% for year in years | reverse %}
     <div class="year">
-    <h2>{% if year.key != 0 %}{{ year.key }}{% else %}In progress, unfinished{% endif %}</h2>
+    <h2>{% if year.key != 0 %}{{ year.key }} {% else %}In progress, unfinished{% endif %}</h2>
+    <div class="year-stats">{{ year.count }} books {{ year.pageCount }}pp</div>
     {% for month in year.months | reverse %}
     <div class="month" data-month="{{monthName[month.key]}}" data-year="{{year.key}}">
         <h3>{{ monthName[month.key] }}</h3>
         <ul>
             {% for book in month.data | reverse %}
-            <li class="book" data-published="{{book.published}}" data-rating="{{book.ratingNumber}}">
+            <li class="book">
                 <span class="book-title" data-title="{{book.title}}">{{book.title}}</span> &mdash; 
-                <span class="book-author" data-author="{{book.authors}}">{{book.authors}}</span> 
-                (<span class="published" data-author="{{book.published}}">{{book.published}}</span>)
-                <span class="rating"></span>
+                <span class="book-author" data-author="{{book.authors}}">{{book.authors}}</span>
+                {% if book.translator != ''%}
+                translated by <span data-author="{{book.authors}}">{{ book.translator }}</span>
+                {% endif %}
+                (<span class="published" data-published="{{book.published}}">{{book.published}}</span>)
+                <span class="rating" data-rating="{{book.ratingNumber}}">{{ book.ratingEmoji }}</span>
             </li>
             {% endfor %}
         </ul>

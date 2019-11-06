@@ -7,7 +7,7 @@ McSweeney's Quarterly Concern Issue 13,Various,Chris Ware,,2009-01-01,+,,263,,TR
 Amrita,Banana Yoshimoto,,,2009-01-01,-,,384,,,1994
 Man in the Dark,Paul Auster,,,2009-01-01,,,192,,,2008
 Dreams of the Rarebit Fiend,Winsor McCay,,,2009-02-01,,,200,,TRUE,1910
-Agile Web Development with Rails: A Pragmatic Guide,Dave Thomas,,,2009-02-01,,,450,TRUE,,,2005
+Agile Web Development with Rails: A Pragmatic Guide,Dave Thomas,,,2009-02-01,,,450,TRUE,,2005
 Matter,Iain M. Banks,,,2009-02-01,,,656,,,2008
 Acme Novelty Library #18,Chris Ware,,,2009-02-01,+,,56,,TRUE,2007
 Acme Novelty Library #19,Chris Ware,,,2009-02-01,+,,80,,TRUE,2008
@@ -167,7 +167,7 @@ Building Stories,Chris Ware,,,2012-10-01,+,,246,,TRUE,2012
 Insurrection: The War Against the Judges Has Begun,Dan Abnett,,,2012-11-01,,,128,,TRUE,2011
 The A. B. C. Warriors: The Black Hole,"Pat Mills,Simon Bisley",,,2012-11-01,,,160,,TRUE,1988
 The Compass Rose,Ursula K. Le Guin,,,2013-01-01,,,368,,,1982
-The Iliad,"Homer,Robert Fagles",,,2013-01-01,,,528,,,-800
+The Iliad,Homer,,Robert Fagles,2013-01-01,,,528,,,-800
 Lustrum,Robert Harris,,,2013-01-01,,,454,,,2009
 Ubik,Philip K. Dick,,,2013-09-07,+,TRUE,224,,,1969
 Underground Maps Unraveled,Maxwell J Roberts,,,2013-02-01,+,,224,TRUE,,2012
@@ -186,7 +186,7 @@ Microscope,Ben Robbins,,,2012-08-01,,,,TRUE,,2011
 The Complete Chronicles of Conan: Centenary Edition,Robert E. Howard,,,,,,928,,,1932
 "MP3: The Meaning of a Format (Sign, Storage, Transmission) ",Jonathan Sterne,,,2013-06-14,,,360,TRUE,,2012
 Epiphany of The Long Sun,Gene Wolfe,,,,,,720,,,2000
-The Odyssey,"Homer,Robert Fagles",,,2014-02-03,,,560,,,-800
+The Odyssey,Homer,,Robert Fagles,2014-02-03,,,560,,,-800
 Telegraph Avenue,Michael Chabon,,,2013-08-11,,,640,,,2012
 Fables Vol 12: The Dark Ages,"Peter Gross,Mark Buckingham,David Hahn,Mike Allred,Bill Willingham",,,2013-06-03,,,192,,TRUE,2009
 Fables Vol 13: The Great Fables Crossover,"Bill Willingham,Matthew Sturges,Mark Buckingham",,,2013-06-05,,,224,,TRUE,2010
