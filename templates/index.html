@@ -1,8 +1,72 @@
 <html>
     <head>
-        <title>{{ title }}</title>
+        <title>{{ title }} - Tom Pearson</title>
+        <style>
+        body {
+            font-family: sans-serif;
+            color:rgb(0, 40, 255);
+            margin-left:10%;
+            margin-right:10%;
+        }
+
+        ul {
+            padding: 0px;
+            margin: 0px;
+            list-style-type: none;
+        }
+
+        h1 {
+
+        }
+
+        h2 {
+            color: rgb(255, 40, 0);
+            padding-left: 30px;
+        }
+
+        h3 { 
+            color:rgb(255, 40, 0);
+            font-size: small;
+            font-weight: normal;
+            font-style: italic;
+            padding-left: 30px;
+        }
+        li{
+            padding-bottom:5px;
+        }
+        .book-title{
+            font-weight:bold;
+        }
+        .book-author{
+            font-style:italic;
+        }
+        </style>
     </head>
     <body>
     <h1>{{ title }}</h1>
+    <div>INTRO</div>
+    <div>KEY</div>
+    <div class="reading-line"></div>
+    <div class="publishing-line"></div>
+    {% for year in years | reverse %}
+    <div class="year">
+    <h2>{% if year.key != 0 %}{{ year.key }}{% else %}In progress, unfinished{% endif %}</h2>
+    {% for month in year.months | reverse %}
+    <div class="month" data-month="{{monthName[month.key]}}" data-year="{{year.key}}">
+        <h3>{{ monthName[month.key] }}</h3>
+        <ul>
+            {% for book in month.data | reverse %}
+            <li class="book" data-published="{{book.published}}" data-rating="{{book.ratingNumber}}">
+                <span class="book-title" data-title="{{book.title}}">{{book.title}}</span> &mdash; 
+                <span class="book-author" data-author="{{book.authors}}">{{book.authors}}</span> 
+                (<span class="published" data-author="{{book.published}}">{{book.published}}</span>)
+                <span class="rating"></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+    {% endfor %}
     </body>
 </html>
