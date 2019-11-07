@@ -16,6 +16,11 @@
         .rating-word{
             border-bottom: solid 1px rgb(0,40,255);
         }
+        .clear:hover{
+            color:white;
+            background:rgb(255,40,0);
+            cursor:pointer;
+        }
 
         [data-published]:hover{
             color:white;
@@ -72,6 +77,16 @@
             border-bottom: 1px solid rgb(255,40,0);
             padding-bottom:4px;
         }
+        article{
+            margin-bottom: 100px;
+        }
+        .info{
+            position:fixed;
+            bottom:0px;
+            right:0px;
+            background:white;
+            padding:10px;
+        }
         </style>
     </head>
     <body>
@@ -80,12 +95,14 @@
     <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
     Then I decided a spreadsheet would do just fine. <a href="/books/reading-list.csv">Here it is</a>. 
     Below you can see that spreadsheet turned into HTML an SVGs.</p>
-    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them, but 
+    <h2>Notes</h2>
+    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them. 
     <span class="rating" data-rating="5" >★★</span> are espescially recomended, 
     <span class="rating" data-rating="4" >★</span> are recomended if you like that kind of thing,
     <span class="rating" data-rating="2" >☠︎</span> are only for people who are <i>really</i> into that kind of thing, and
-    <span class="rating" data-rating="1" >☠☠</span> should be avoided</p>
+    <span class="rating" data-rating="1" >☠☠</span> denotes books I feel are best avoided</p>
     <p>Sometimes I read things more than once so they appear more than once.</p>
+    <p>Publication date (in brackets) is a bit vague, I'm using it as a proxy for when something was written so for eg. Fagels' translation of the Iliad is noted as 800BC (itself a bit vague) rather than when Penguin <i>actually</i> published it. Similarly for career spanning short story collections I've chosen the mid-point.</p>
     </div>
     <div class="reading-line"></div>
     <div class="publishing-line"></div>
@@ -3784,7 +3801,7 @@
                 <span class="book-author" data-author="Stephen Baxter">Stephen Baxter</span>
                 
                 (<span class="published" data-published="2002">2002</span>)
-                <span class="rating" data-rating="1">︎︎☠☠</span>
+                <span class="rating" data-rating="1">☠☠</span>
             </li>
             
             <li class="book">
@@ -4037,7 +4054,7 @@
                 <span class="book-author" data-author="Harry Harrison">Harry Harrison</span>
                 
                 (<span class="published" data-published="1989">1989</span>)
-                <span class="rating" data-rating="1">︎︎☠☠</span>
+                <span class="rating" data-rating="1">☠☠</span>
             </li>
             
             <li class="book">
@@ -4328,49 +4345,25 @@
     
     <div class="year">
     <h2>In progress, unfinished</h2>
-    <div class="year-stats">7 books 4485pp</div>
+    <div class="year-stats">9 books 5029pp</div>
     
     <div class="month" data-month="" data-year="0">
         <h3></h3>
         <ul>
             
             <li class="book">
-                <span class="book-title" data-title="The Man with the Compound Eyes">The Man with the Compound Eyes</span> &mdash; 
-                <span class="book-author" data-author="Wu Ming-Yi">Wu Ming-Yi</span>
+                <span class="book-title" data-title="The Unmapped Country: Stories and Fragments">The Unmapped Country: Stories and Fragments</span> &mdash; 
+                <span class="book-author" data-author="Ann Quin">Ann Quin</span>
                 
-                (<span class="published" data-published="2012">2012</span>)
+                (<span class="published" data-published="1967">1967</span>)
                 <span class="rating" data-rating="3"></span>
             </li>
             
             <li class="book">
-                <span class="book-title" data-title="Oblivion">Oblivion</span> &mdash; 
-                <span class="book-author" data-author="David Foster Wallace">David Foster Wallace</span>
+                <span class="book-title" data-title="The Complete Chronicles of Conan: Centenary Edition">The Complete Chronicles of Conan: Centenary Edition</span> &mdash; 
+                <span class="book-author" data-author="Robert E. Howard">Robert E. Howard</span>
                 
-                (<span class="published" data-published="2004">2004</span>)
-                <span class="rating" data-rating="3"></span>
-            </li>
-            
-            <li class="book">
-                <span class="book-title" data-title="Collected Stories and Other Writings (Library of America, No. 188)">Collected Stories and Other Writings (Library of America, No. 188)</span> &mdash; 
-                <span class="book-author" data-author="John Cheever">John Cheever</span>
-                
-                (<span class="published" data-published="1978">1978</span>)
-                <span class="rating" data-rating="3"></span>
-            </li>
-            
-            <li class="book">
-                <span class="book-title" data-title="The Grammar of Graphics (Statistics and Computing)">The Grammar of Graphics (Statistics and Computing)</span> &mdash; 
-                <span class="book-author" data-author="Leland Wilkinson">Leland Wilkinson</span>
-                
-                (<span class="published" data-published="1999">1999</span>)
-                <span class="rating" data-rating="3"></span>
-            </li>
-            
-            <li class="book">
-                <span class="book-title" data-title="Grimm Tales: For Young and Old">Grimm Tales: For Young and Old</span> &mdash; 
-                <span class="book-author" data-author="Phillip Pullman">Phillip Pullman</span>
-                
-                (<span class="published" data-published="2012">2012</span>)
+                (<span class="published" data-published="1932">1932</span>)
                 <span class="rating" data-rating="3"></span>
             </li>
             
@@ -4383,10 +4376,50 @@
             </li>
             
             <li class="book">
-                <span class="book-title" data-title="The Complete Chronicles of Conan: Centenary Edition">The Complete Chronicles of Conan: Centenary Edition</span> &mdash; 
-                <span class="book-author" data-author="Robert E. Howard">Robert E. Howard</span>
+                <span class="book-title" data-title="Grimm Tales: For Young and Old">Grimm Tales: For Young and Old</span> &mdash; 
+                <span class="book-author" data-author="Phillip Pullman">Phillip Pullman</span>
                 
-                (<span class="published" data-published="1932">1932</span>)
+                (<span class="published" data-published="2012">2012</span>)
+                <span class="rating" data-rating="3"></span>
+            </li>
+            
+            <li class="book">
+                <span class="book-title" data-title="The Grammar of Graphics (Statistics and Computing)">The Grammar of Graphics (Statistics and Computing)</span> &mdash; 
+                <span class="book-author" data-author="Leland Wilkinson">Leland Wilkinson</span>
+                
+                (<span class="published" data-published="1999">1999</span>)
+                <span class="rating" data-rating="3"></span>
+            </li>
+            
+            <li class="book">
+                <span class="book-title" data-title="Collected Stories and Other Writings (Library of America, No. 188)">Collected Stories and Other Writings (Library of America, No. 188)</span> &mdash; 
+                <span class="book-author" data-author="John Cheever">John Cheever</span>
+                
+                (<span class="published" data-published="1978">1978</span>)
+                <span class="rating" data-rating="3"></span>
+            </li>
+            
+            <li class="book">
+                <span class="book-title" data-title="Oblivion">Oblivion</span> &mdash; 
+                <span class="book-author" data-author="David Foster Wallace">David Foster Wallace</span>
+                
+                (<span class="published" data-published="2004">2004</span>)
+                <span class="rating" data-rating="3"></span>
+            </li>
+            
+            <li class="book">
+                <span class="book-title" data-title="The Man with the Compound Eyes">The Man with the Compound Eyes</span> &mdash; 
+                <span class="book-author" data-author="Wu Ming-Yi">Wu Ming-Yi</span>
+                
+                (<span class="published" data-published="2012">2012</span>)
+                <span class="rating" data-rating="3"></span>
+            </li>
+            
+            <li class="book">
+                <span class="book-title" data-title="Moderan">Moderan</span> &mdash; 
+                <span class="book-author" data-author="David Bunch">David Bunch</span>
+                
+                (<span class="published" data-published="1971">1971</span>)
                 <span class="rating" data-rating="3"></span>
             </li>
             
@@ -4396,6 +4429,57 @@
     </div>
     
     </article>
+    <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
     <footer></footer>
     </body>
+    <script>
+
+    function hideAll(selector){
+        document.querySelectorAll(selector)
+            .forEach(e=>e.style.display = 'none');
+    }
+
+    function showAll(selector){
+        document.querySelectorAll(selector)
+            .forEach(e=>e.style.display = '');
+    }
+
+    function clicked(attr, el){
+        const value = el.getAttribute(attr);
+        hideAll('li.book');
+        hideAll('ul');
+        hideAll('div.month');
+        hideAll('div.year');
+        const selected = document.querySelectorAll(`[${attr}*="${value}"]`);
+        selected.forEach(span=>{
+            //li.book
+            span.parentElement.style.display =  '';
+            //ul
+            span.parentElement.parentElement.style.display =  '';
+            //div.month
+            span.parentElement.parentElement.parentElement.style.display =  '';
+            //div.year
+            span.parentElement.parentElement.parentElement.parentElement.style.display =  '';
+        });
+        document.querySelector('.info .property').innerHTML = `${attr.split('-')[1]} ${value} (${selected.length})`;
+    }
+    function reset(){
+        showAll('li.book');
+        document.querySelector('.info .property').innerHTML = 'all';
+    }
+
+    document.querySelectorAll('[data-rating]').forEach(function(el){
+        el.onclick = function(){ clicked('data-rating', this) };
+    });
+
+    document.querySelectorAll('[data-published]').forEach(function(el){
+        el.onclick = function(){ clicked('data-published', this) };
+    });
+
+    document.querySelectorAll('[data-author]').forEach(function(el){
+        el.onclick = function(){ clicked('data-author', this) };
+    });
+
+    document.querySelector('.clear').onclick = reset;
+    </script>
 </html>

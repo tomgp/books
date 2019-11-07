@@ -16,6 +16,11 @@
         .rating-word{
             border-bottom: solid 1px rgb(0,40,255);
         }
+        .clear:hover{
+            color:white;
+            background:rgb(255,40,0);
+            cursor:pointer;
+        }
 
         [data-published]:hover{
             color:white;
@@ -72,6 +77,16 @@
             border-bottom: 1px solid rgb(255,40,0);
             padding-bottom:4px;
         }
+        article{
+            margin-bottom: 100px;
+        }
+        .info{
+            position:fixed;
+            bottom:0px;
+            right:0px;
+            background:white;
+            padding:10px;
+        }
         </style>
     </head>
     <body>
@@ -80,12 +95,14 @@
     <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
     Then I decided a spreadsheet would do just fine. <a href="/books/reading-list.csv">Here it is</a>. 
     Below you can see that spreadsheet turned into HTML an SVGs.</p>
-    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them, but 
+    <h2>Notes</h2>
+    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them. 
     <span class="rating" data-rating="5" >{{ratingSymbols[0]}}</span> are espescially recomended, 
     <span class="rating" data-rating="4" >{{ratingSymbols[1]}}</span> are recomended if you like that kind of thing,
     <span class="rating" data-rating="2" >{{ratingSymbols[2]}}</span> are only for people who are <i>really</i> into that kind of thing, and
-    <span class="rating" data-rating="1" >{{ratingSymbols[3]}}</span> should be avoided</p>
+    <span class="rating" data-rating="1" >{{ratingSymbols[3]}}</span> denotes books I feel are best avoided</p>
     <p>Sometimes I read things more than once so they appear more than once.</p>
+    <p>Publication date (in brackets) is a bit vague, I'm using it as a proxy for when something was written so for eg. Fagels' translation of the Iliad is noted as 800BC (itself a bit vague) rather than when Penguin <i>actually</i> published it. Similarly for career spanning short story collections I've chosen the mid-point.</p>
     </div>
     <div class="reading-line"></div>
     <div class="publishing-line"></div>
@@ -114,6 +131,57 @@
     </div>
     {% endfor %}
     </article>
+    <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
     <footer></footer>
     </body>
+    <script>
+
+    function hideAll(selector){
+        document.querySelectorAll(selector)
+            .forEach(e=>e.style.display = 'none');
+    }
+
+    function showAll(selector){
+        document.querySelectorAll(selector)
+            .forEach(e=>e.style.display = '');
+    }
+
+    function clicked(attr, el){
+        const value = el.getAttribute(attr);
+        hideAll('li.book');
+        hideAll('ul');
+        hideAll('div.month');
+        hideAll('div.year');
+        const selected = document.querySelectorAll(`[${attr}*="${value}"]`);
+        selected.forEach(span=>{
+            //li.book
+            span.parentElement.style.display =  '';
+            //ul
+            span.parentElement.parentElement.style.display =  '';
+            //div.month
+            span.parentElement.parentElement.parentElement.style.display =  '';
+            //div.year
+            span.parentElement.parentElement.parentElement.parentElement.style.display =  '';
+        });
+        document.querySelector('.info .property').innerHTML = `${attr.split('-')[1]} ${value} (${selected.length})`;
+    }
+    function reset(){
+        showAll('li.book');
+        document.querySelector('.info .property').innerHTML = 'all';
+    }
+
+    document.querySelectorAll('[data-rating]').forEach(function(el){
+        el.onclick = function(){ clicked('data-rating', this) };
+    });
+
+    document.querySelectorAll('[data-published]').forEach(function(el){
+        el.onclick = function(){ clicked('data-published', this) };
+    });
+
+    document.querySelectorAll('[data-author]').forEach(function(el){
+        el.onclick = function(){ clicked('data-author', this) };
+    });
+
+    document.querySelector('.clear').onclick = reset;
+    </script>
 </html>
