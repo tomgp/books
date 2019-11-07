@@ -49,12 +49,10 @@ const structuredData = years.map(year=>{
     }, 0)
     return year;
 }).filter(d=>d.key!='0')
-//make an html page
-writeFileSync('./data.json', JSON.stringify(structuredData, null, 2));
 
 writeFileSync(
     './index.html', 
-    render('./templates/index.html', {
+    render('./templates/index.html.nj', {
         years,
         ratingSymbols: ['★★','★','☠︎','☠☠'],
         monthName: [null,'January','February','March','April','May','June','July','August','September','October','November','December'],

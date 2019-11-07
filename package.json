@@ -10,6 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "serve":"browser-sync start --server",
+    "build":"nodemon build.js -e \"js csv nj\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
