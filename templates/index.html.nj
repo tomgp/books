@@ -74,8 +74,11 @@
             color:rgb(255,40,0);
         }
         .year-stats{
-            border-bottom: 1px solid rgb(255,40,0);
             padding-bottom:4px;
+        }
+        hr{
+            border: none;
+            border-bottom: 1px solid rgb(255,40,0);
         }
         article{
             margin-bottom: 100px;
@@ -86,6 +89,12 @@
             right:0px;
             background:white;
             padding:10px;
+        }
+        .property{
+            border-bottom: 1px solid rgb(0,40,255);
+        }
+        .clear{
+            display:none;
         }
         </style>
     </head>
@@ -110,6 +119,7 @@
     <div class="year">
     <h2>{% if year.key != 0 %}{{ year.key }} {% else %}In progress, unfinished{% endif %}</h2>
     <div class="year-stats">{{ year.count }} books {{ year.pageCount }}pp</div>
+    <hr>
     {% for month in year.months | reverse %}
     <div class="month" data-month="{{monthName[month.key]}}" data-year="{{year.key}}">
         <h3>{{ monthName[month.key] }}</h3>
@@ -132,7 +142,7 @@
     {% endfor %}
     </article>
     <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
-    <footer></footer>
+    <footer>Tom Pearson &mdash; <a href="https://www.toffeemilkshake.co.uk">Home Page</a>, <a href="https://www.toffeemilkshake.co.uk/contents.html">Contents</a></footer>
     </body>
     <script>
 
@@ -152,6 +162,9 @@
         hideAll('ul');
         hideAll('div.month');
         hideAll('div.year');
+        hideAll('div.year-stats');
+        document.querySelector('.clear').style.display = 'inline-block';
+
         const selected = document.querySelectorAll(`[${attr}*="${value}"]`);
         selected.forEach(span=>{
             //li.book
@@ -166,7 +179,7 @@
         document.querySelector('.info .property').innerHTML = `${attr.split('-')[1]} ${value} (${selected.length})`;
     }
     function reset(){
-        showAll('li.book');
+        showAll('*');
         document.querySelector('.info .property').innerHTML = 'all';
     }
 
