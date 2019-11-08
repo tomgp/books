@@ -2,6 +2,9 @@ const { readFileSync, writeFileSync } = require('fs');
 const { csvParse } = require('d3-dsv');
 const { render } = require('nunjucks');
 
+const starMarkup = readFileSync('./templates/star.svg');
+const tearMarkup = readFileSync('./templates/tear.svg');
+
 const splitBy = (array, splitter) => {
     const subarrays = {};
     array.forEach(d => {
@@ -30,7 +33,7 @@ const decorateRow = (row) => {
     row.readMonth = Number(dateElements[1]);
     row.readYear = Number(dateElements[0]);
     row.ratingNumber = { '--':1, '-':2, '':3, '+':4, '++':5 }[row.rating];
-    row.ratingEmoji = { '--':'☠☠', '-':'☠︎', '':'', '+':'★', '++':'★★' }[row.rating];
+    row.ratingEmoji = { '--':`${tearMarkup}${tearMarkup}`, '-':`${tearMarkup}`, '':'', '+':`${starMarkup}`, '++':`${starMarkup}${starMarkup}` }[row.rating];
     row.pages = Number(row.pages);
     row.authors = row.authors.split(',').map(d=>d.trim()).join(', ');
     row['non-fiction'] = (row['non-fiction']!='');
@@ -56,7 +59,7 @@ writeFileSync(
     './index.html', 
     render('./templates/index.html.nj', {
         years,
-        ratingSymbols: ['★★','★','☠︎','☠☠'],
+        ratingSymbols: [`${starMarkup}${starMarkup}`,`${starMarkup}`,`${tearMarkup}`,`${tearMarkup}${tearMarkup}`],
         monthName: [null,'January','February','March','April','May','June','July','August','September','October','November','December'],
         title: 'Books'
     })

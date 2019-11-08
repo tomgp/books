@@ -9,6 +9,7 @@
         }
         p, ul{
             max-width:600px;
+            line-height: 1.5;
         }
         .rating{
             color:rgb(255, 40, 0);
@@ -31,6 +32,9 @@
             color:white;
             background:rgb(255,40,0);
             cursor:pointer;
+        }
+        [data-rating]:hover svg{
+            fill:white;
         }
         [data-author]:hover{
             color:white;
@@ -62,7 +66,7 @@
             margin-bottom: 4px;
         }
         li{
-            padding-bottom:5px;
+            padding-bottom:2px;
         }
         .book-title{
             font-weight:bold;
@@ -96,22 +100,22 @@
         .clear{
             display:none;
         }
+        .icon{
+            fill:rgb(255,40,0);
+        }
+        .icon.teardrop{
+            margin-right:-3px;
+            margin-left:-2px;
+        }
         </style>
     </head>
     <body>
     <article>
     <h1>{{ title }}</h1>
     <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
-    Then I decided a spreadsheet would do just fine. <a href="/books/reading-list.csv">Here it is</a>. 
-    Below you can see that spreadsheet turned into HTML an SVGs.</p>
-    <h2>Notes</h2>
-    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them. 
-    <span class="rating" data-rating="5" >{{ratingSymbols[0]}}</span> are espescially recomended, 
-    <span class="rating" data-rating="4" >{{ratingSymbols[1]}}</span> are recomended if you like that kind of thing,
-    <span class="rating" data-rating="2" >{{ratingSymbols[2]}}</span> are only for people who are <i>really</i> into that kind of thing, and
-    <span class="rating" data-rating="1" >{{ratingSymbols[3]}}</span> denotes books I feel are best avoided</p>
-    <p>Sometimes I read things more than once so they appear more than once.</p>
-    <p>Publication date (in brackets) is a bit vague, I'm using it as a proxy for when something was written so for eg. Fagels' translation of the Iliad is noted as 800BC (itself a bit vague) rather than when Penguin <i>actually</i> published it. Similarly for career spanning short story collections I've chosen the mid-point.</p>
+    Then I decided a spreadsheet would do just fine. 
+    Below you can see that spreadsheet turned into HTML an SVGs.
+    <br>{{ratingSymbols[1] | safe}} = good, {{ratingSymbols[2] | safe }} = bad. <a href="#notes">More notes</a></p>
     </div>
     <div class="reading-line"></div>
     <div class="publishing-line"></div>
@@ -132,7 +136,7 @@
                 translated by <span data-author="{{book.authors}}">{{ book.translator }}</span>
                 {% endif %}
                 (<span class="published" data-published="{{book.published}}">{{book.published}}</span>)
-                <span class="rating" data-rating="{{book.ratingNumber}}">{{ book.ratingEmoji }}</span>
+                <span class="rating" data-rating="{{book.ratingNumber}}">{{ book.ratingEmoji  | safe }}</span>
             </li>
             {% endfor %}
         </ul>
@@ -140,6 +144,17 @@
     {% endfor %}
     </div>
     {% endfor %}
+    <div id="notes">
+    <h2>Notes</h2>
+    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them. 
+    <span class="rating" data-rating="5" >{{ratingSymbols[0] | safe}}</span> are espescially recomended, 
+    <span class="rating" data-rating="4" >{{ratingSymbols[1] | safe}}</span> are recomended if you like that kind of thing,
+    <span class="rating" data-rating="2" >{{ratingSymbols[2] | safe}}</span> are only for people who are <i>really</i> into that kind of thing, and
+    <span class="rating" data-rating="1" >{{ratingSymbols[3] | safe}}</span> denotes books I feel are best avoided</p>
+    <p>Sometimes I read things more than once so they appear more than once.</p>
+    <p>Publication date (in brackets) is a bit vague, I'm using it as a proxy for when something was written so for eg. Fagels' translation of the Iliad is noted as 800BC (itself a bit vague) rather than when Penguin <i>actually</i> published it. Similarly for career spanning short story collections I've chosen the mid-point.</p>
+    <p><a href="/books/reading-list.csv">Data is here (.csv file)</a></p>
+    </div>
     </article>
     <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
     <footer>Tom Pearson &mdash; <a href="https://www.toffeemilkshake.co.uk">Home Page</a>, <a href="https://www.toffeemilkshake.co.uk/contents.html">Contents</a></footer>
