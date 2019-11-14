@@ -16,15 +16,6 @@ const splitBy = (array, splitter) => {
     return  Object.entries(subarrays).sort((a,b)=>(a[0]-b[0])).map(d=>(d[1]));;
 }
 
-//get the data 
-const ratingMeanings = [
-    'Steer clear!',
-    'I guess you might get something out if this is you\'re a fan of this kind of thing',
-    'Fine',
-    'Recomended if you like this kind of thing',
-    'Recomended without reservation'
-];
-
 const decorateRow = (row) => {
     if(!row.title){
         return null;
