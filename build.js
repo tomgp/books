@@ -1,6 +1,8 @@
 const { readFileSync, writeFileSync } = require('fs');
 const { csvParse } = require('d3-dsv');
 const { render } = require('nunjucks');
+const { max } = require('d3-array');
+const { scaleLinear } = require('d3-scale');
 
 const starMarkup = readFileSync('./templates/star.svg');
 const tearMarkup = readFileSync('./templates/tear.svg');
@@ -52,8 +54,55 @@ const structuredData = years.map(year=>{
     year.pageCount = year.data.reduce((sum,current)=>{
         return sum + Number(current.pages);
     }, 0)
+    year.formattedPageCount = year.pageCount.toLocaleString();
     return year;
-}).filter(d=>d.key!='0')
+}).filter(d=>d.key!='0');
+
+const maxPages = max(years.map(d=>d.pageCount));
+
+const height = 250;
+const margin = {top:25, left:0, bottom:25, right:0};
+const width = 800;
+const plotHeight = height - (margin.top + margin.bottom);
+const plotWidth = width - (margin.left + margin.right);
+
+const pageScale = scaleLinear()
+    .domain([0, maxPages])
+    .range([0, plotHeight]);
+
+const readDateStacks = structuredData.map(year=>{
+    console.log('---')
+    return year.data.reduce((acc, current)=>{
+        acc.stack.push(current);
+        current.height = Math.ceil(Math.max(pageScale(current.pages), 2));
+        acc.stackHeight += (current.height+0.5); // +1 to allow for 1px border on each book
+        current.y = plotHeight - acc.stackHeight;
+        console.log(`${current.height} + ${acc.stackHeight} + 1 = `);
+        console.log(`  ${acc.stackHeight}`);
+        return acc;
+    },{stackHeight:0, stack:[], year:year.key});
+});
+
+
+
+console.log(plotHeight)
+
+const maxYears = readDateStacks.length;
+
+
+const yearScale = scaleLinear()
+    .domain([0, maxYears+2])
+    .range([0, plotWidth]);
+
+const jitter = 0.1;
+readDateStacks.forEach((year,i)=>{
+    year.stack = year.stack.map((book)=>{
+        book.x = yearScale(i + Math.random() * jitter);
+        book.width = yearScale(0.6 + Math.random() * jitter);
+        book.class = book.ratingNumber>4 ? 1:2;
+        return book;
+    })
+});
 
 writeFileSync(
     './index.html', 
@@ -61,7 +110,9 @@ writeFileSync(
         years,
         ratingSymbols: [`${starMarkup}${starMarkup}`,`${starMarkup}`,`${tearMarkup}`,`${tearMarkup}${tearMarkup}`],
         monthName: [null,'January','February','March','April','May','June','July','August','September','October','November','December'],
-        title: 'Books'
+        title: 'Books',
+        plotHeight, width, height, margin,
+        readDateStacks
     })
 );
 

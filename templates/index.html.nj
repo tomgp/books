@@ -109,22 +109,47 @@
             margin-right:-3px;
             margin-left:-2px;
         }
+        .reading-shelf{
+            width:100%;
+        }
+        svg.shelf{
+            max-width:100vw;
+        }
+        .chart-book-1{
+            fill:rgb(255,40,0);
+            stroke:white;
+            stroke-width:1;
+        }
+        .chart-book-2{
+            fill:rgb(0,40,255);
+            stroke:white;
+            stroke-width:1;
+        }
+
+        .axis-label{
+            stroke: rgb(0,40,255);
+            fill: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
         </style>
     </head>
     <body>
     <article>
+    
     <h1>{{ title }}</h1>
+    <div class="reading-shelf">
+        {% include "./shelf.svg" %}
+    </div>
     <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
     Then I decided a spreadsheet would do just fine. 
     Below you can see that spreadsheet turned into HTML an SVGs.
     <br>{{ratingSymbols[1] | safe}} = good, {{ratingSymbols[2] | safe }} = bad. <a href="#notes">More notes</a></p>
     </div>
-    <div class="reading-line"></div>
-    <div class="publishing-line"></div>
     {% for year in years | reverse %}
     <div class="year">
     <h2>{% if year.key != 0 %}{{ year.key }} {% else %}In progress, unfinished{% endif %}</h2>
-    <div class="year-stats">{{ year.count }} books {{ year.pageCount }}pp</div>
+    <div class="year-stats">{{ year.count }} books {{ year.formattedPageCount }}pp</div>
     <hr>
     {% for month in year.months | reverse %}
     <div class="month" data-month="{{monthName[month.key]}}" data-year="{{year.key}}">
