@@ -71,21 +71,14 @@ const pageScale = scaleLinear()
     .range([0, plotHeight]);
 
 const readDateStacks = structuredData.map(year=>{
-    console.log('---')
     return year.data.reduce((acc, current)=>{
         acc.stack.push(current);
         current.height = Math.ceil(Math.max(pageScale(current.pages), 2));
         acc.stackHeight += (current.height+0.5); // +1 to allow for 1px border on each book
         current.y = plotHeight - acc.stackHeight;
-        console.log(`${current.height} + ${acc.stackHeight} + 1 = `);
-        console.log(`  ${acc.stackHeight}`);
         return acc;
     },{stackHeight:0, stack:[], year:year.key});
 });
-
-
-
-console.log(plotHeight)
 
 const maxYears = readDateStacks.length;
 
@@ -99,7 +92,7 @@ readDateStacks.forEach((year,i)=>{
     year.stack = year.stack.map((book)=>{
         book.x = yearScale(i + Math.random() * jitter);
         book.width = yearScale(0.6 + Math.random() * jitter);
-        book.class = book.ratingNumber>4 ? 1:2;
+        book.class = book.ratingNumber > 4 ? 1:2;
         return book;
     })
 });
