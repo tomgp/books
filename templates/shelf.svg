@@ -2,7 +2,7 @@
 <g transform="translate({{margin.left}}, {{margin.top}})">
 {% for year in readDateStacks %}
     {% for book in year.stack %}
-    <rect x="{{book.x}}" y="{{book.y}}" width="{{book.width}}" height="{{book.height}}" class="chart-book-{{book.class}}" data-author="{{book.authors}}" data-title="{{book.title}}"></rect>
+    <rect x="{{book.x}}" y="{{book.y}}" width="{{book.width}}" height="{{book.height}}" class="chart-book score-{{book.ratingNumber}}" data-author="{{book.authors}}" data-title="{{book.title}}"></rect>
     {% endfor %}
     <text class="axis-label" transform="translate({{ year.stack[0].x }}, {{ plotHeight + 20}})">{{year.year}}</text>
 {% endfor %}

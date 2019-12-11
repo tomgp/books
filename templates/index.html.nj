@@ -115,12 +115,12 @@
         svg.shelf{
             max-width:100vw;
         }
-        .chart-book-1{
+        .score-5{
             fill:rgb(255,40,0);
             stroke:white;
             stroke-width:1;
         }
-        .chart-book-2{
+        .score-0, .score-1, .score-2, .score-3, .score-4{
             fill:rgb(0,40,255);
             stroke:white;
             stroke-width:1;
@@ -238,5 +238,7 @@
     });
 
     document.querySelector('.clear').onclick = reset;
+// mouse over behaviour
+    document.querySelectorAll('.chart-book')
     </script>
 </html>
