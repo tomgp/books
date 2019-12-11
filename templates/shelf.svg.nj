@@ -1,0 +1,17 @@
+<svg class="shelf" width="{{width}}" height="{{height}}" view-box="0 0 {{width}} {{height}}">
+<g transform="translate({{margin.left}}, {{margin.top}})">
+{% for year in readDateStacks | reverse %}
+    {% for book in year.stack %}
+    <rect x="{{book.x}}" y="{{book.y}}" width="{{book.width}}" height="{{book.height}}" class="chart-book score-{{book.ratingNumber}}" data-author="{{book.authors}}" data-rating="{{book.ratingNumber}}" data-title="{{book.title}}" data-published="{{book.published}}" data-read="{{book.date}}"></rect>
+    {% endfor %}
+    <text class="axis-label" transform="translate({{ year.stack[0].x }}, {{ plotHeight + 20}})">{{year.year}}</text>
+    
+{% endfor %}
+</g>
+<g transform="translate(0, {{height}})">
+    <rect class="zoom-book" width="200" height="40"></rect>
+    <text class="title"></text>
+    <text class="author"></text>
+    <text class="year"></text>
+</g>
+</svg>

@@ -84,11 +84,11 @@ const maxYears = readDateStacks.length;
 
 
 const yearScale = scaleLinear()
-    .domain([0, maxYears+2])
+    .domain([0, maxYears])
     .range([0, plotWidth]);
 
 const jitter = 0.1;
-readDateStacks.forEach((year,i)=>{
+readDateStacks.reverse().forEach((year,i)=>{
     year.stack = year.stack.map((book)=>{
         book.x = yearScale(i + Math.random() * jitter);
         book.width = yearScale(0.6 + Math.random() * jitter);
@@ -96,7 +96,7 @@ readDateStacks.forEach((year,i)=>{
         return book;
     })
 });
-
+console.log(readDateStacks.reverse());
 writeFileSync(
     './index.html', 
     render('./templates/index.html.nj', {
