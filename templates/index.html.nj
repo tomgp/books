@@ -148,7 +148,7 @@
     <div class="info"><svg height="0" width="100%"></svg></div>
     <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
     Then I decided a spreadsheet would do just fine. 
-    Below you can see that spreadsheet turned into HTML an SVGs.
+    Below you can see that spreadsheet turned into a webpage.
     <br>{{ratingSymbols[1] | safe}} = good, {{ratingSymbols[2] | safe }} = bad. <a href="#notes">More notes</a></p>
     </div>
     {% for year in years | reverse %}
