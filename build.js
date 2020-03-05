@@ -105,7 +105,8 @@ writeFileSync(
         monthName: [null,'January','February','March','April','May','June','July','August','September','October','November','December'],
         title: 'Books',
         plotHeight, width, height, margin,
-        readDateStacks
+        readDateStacks,
+        updated: String(new Date()),
     })
 );
 

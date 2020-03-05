@@ -137,6 +137,9 @@
         .chart-book:hover{
             fill:white;
         }
+        footer{
+        padding-bottom:100px;
+        }
         </style>
     </head>
     <body>
@@ -189,7 +192,7 @@
     </div>
     </article>
     <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
-    <footer>Tom Pearson &mdash; <a href="https://www.toffeemilkshake.co.uk">Home Page</a>, <a href="https://www.toffeemilkshake.co.uk/contents.html">Contents</a></footer>
+    <footer><a href="https://www.toffeemilkshake.co.uk">Tom Pearson</a> &mdash; {{ updated }}</footer>
     </body>
     <script>
 
