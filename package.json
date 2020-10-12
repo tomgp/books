@@ -4,10 +4,10 @@
   "description": "Books I've read over the last few years",
   "main": "index.js",
   "dependencies": {
-    "d3-array": "^2.4.0",
-    "d3-dsv": "^1.1.1",
-    "d3-scale": "^3.2.1",
-    "d3-time-format": "^2.2.1",
+    "d3-array": "^2.8.0",
+    "d3-dsv": "^1.2.0",
+    "d3-scale": "^3.2.3",
+    "d3-time-format": "^2.3.0",
     "nunjucks": "^3.2.1"
   },
   "devDependencies": {},
