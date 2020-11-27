@@ -13,15 +13,15 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node build.js",
+    "start": "nodemon build.js",
     "serve": "browser-sync start --server",
-    "build": "nodemon build.js -e \"js csv nj svg\"",
+    "build": "node build.js -e \"js csv nj svg\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npx husky install"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run build"
+      "pre-commit": "npm run build && git add -A ."
     }
   },
   "author": "",
