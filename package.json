@@ -8,6 +8,7 @@
     "d3-dsv": "^1.2.0",
     "d3-scale": "^3.2.3",
     "d3-time-format": "^2.3.0",
+    "husky": "^4.3.0",
     "nunjucks": "^3.2.1"
   },
   "devDependencies": {},
@@ -15,7 +16,13 @@
     "start": "node build.js",
     "serve": "browser-sync start --server",
     "build": "nodemon build.js -e \"js csv nj svg\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npx husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build"
+    }
   },
   "author": "",
   "license": "ISC"
