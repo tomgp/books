@@ -9,7 +9,7 @@
     "d3-scale": "^3.2.3",
     "d3-time-format": "^2.3.0",
     "husky": "^4.3.0",
-    "nunjucks": "^3.2.1"
+    "nunjucks": "^3.2.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -27,4 +27,3 @@
   "author": "",
   "license": "ISC"
 }
-
