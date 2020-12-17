@@ -8,7 +8,6 @@
             color: rgb(0, 40, 255);
         }
         p, ul{
-            max-width:600px;
             line-height: 1.5;
         }
         .rating{
@@ -86,6 +85,9 @@
         }
         article{
             margin-bottom: 100px;
+            max-width:800px;
+            margin-left:auto;
+            margin-right:auto;
         }
         .info{
             position:fixed;
@@ -150,7 +152,7 @@
     </div>
     <div class="info"><svg height="0" width="100%"></svg></div>
     <div><p>I started recording what books I was reading at the start of 2009 on Amazon's Goodreads website.
-    Then I decided a spreadsheet would do just fine. 
+    Eventually, I realised a spreadsheet would do just fine, infact would better serve my needs -- easier &amp; quicker to update, I can do what I want with the data etc. 
     This is that spreadsheet turned into a webpage.
     <br>{{ratingSymbols[1] | safe}} = good, {{ratingSymbols[2] | safe }} = bad. <a href="#notes">More notes</a></p>
     </div>
