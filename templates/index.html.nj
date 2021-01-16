@@ -190,11 +190,14 @@
     <span class="rating" data-rating="1" >{{ratingSymbols[3] | safe}}</span> denotes books I feel are best avoided</p>
     <p>Sometimes I read things more than once so they appear more than once.</p>
     <p>Publication date (in brackets) is a bit vague, I'm using it as a proxy for when something was written so for eg. Fagels' translation of the Iliad is noted as 800BC (itself a bit vague) rather than when Penguin <i>actually</i> published it. Similarly for career spanning short story collections I've chosen the mid-point.</p>
-    <p><a href="/books/reading-list.csv">Data is here (.csv file)</a></p>
+    <p><a href="reading-list.csv">Data is here (.csv file)</a></p>
     </div>
     </article>
     <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
-    <footer><a href="https://www.toffeemilkshake.co.uk">Tom Pearson</a> &mdash; {{ updated }}</footer>
+    <footer>
+    <p><a href="hyper://f2914714890a60ad2962344a48972f0fc4255b114b17930e6ac0413181f321f8/">Hyperdrive</a></p>
+    <p><a href="https://www.toffeemilkshake.co.uk/books">Website</a></p>
+    <p><a href="https://www.toffeemilkshake.co.uk">Tom Pearson</a> &mdash; {{ updated }}</footer></p>
     </body>
     <script>
 
