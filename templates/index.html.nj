@@ -33,7 +33,8 @@
             cursor:pointer;
         }
         [data-rating]:hover svg{
-            fill:white;
+            fill: white;
+            cursor: pointer;
         }
         [data-author]:hover{
             color:white;
@@ -129,6 +130,16 @@
             stroke:white;
             stroke-width:1;
         }
+        .score-0:hover,
+        .score-1:hover,
+        .score-2:hover,
+        .score-3:hover,
+        .score-4:hover{
+            stroke:rgb(0,40,255);
+        }
+        .score-5:hover{
+            stroke:rgb(255,40,0);
+        }
 
         .axis-label{
             stroke: rgb(0,40,255);
@@ -141,6 +152,25 @@
         }
         footer{
         padding-bottom:100px;
+        }
+
+        .tooltip{
+            position: absolute;
+            pointer-events: none;
+            font-size:10px;
+            background-color:white;
+            border:1px solid rgb(0,40,255);
+            padding-left:10px;
+            padding-right:10px;
+            box-shadow: 10px 10px 0px 0px rgb(0,40,255);
+        }
+
+        .tooltip.off{
+            display:none;
+        }
+
+        .tooltip.on{
+            display: inline-block;
         }
         </style>
     </head>
@@ -198,8 +228,27 @@
     <p><a href="hyper://f2914714890a60ad2962344a48972f0fc4255b114b17930e6ac0413181f321f8/">Hyperdrive</a></p>
     <p><a href="https://www.toffeemilkshake.co.uk/books">Website</a></p>
     <p><a href="https://www.toffeemilkshake.co.uk">Tom Pearson</a> &mdash; {{ updated }}</footer></p>
+    <div class="tooltip off">
+    TOOL
+    </div>
     </body>
     <script>
+    const tip = document.querySelector('.tooltip');
+
+    function tooltip(e){
+        tip.style.left = `${e.pageX + 5}px`;
+        tip.style.top = `${e.pageY + 5}px`;
+    }
+    function tooltipOff(e){
+        tip.classList.add('off');
+        tip.classList.remove('on'); 
+    }
+    function tooltipOn(e){
+        const data = e.target.dataset
+        tip.innerHTML = `<p><strong>${data.title}</strong><br>${data.author}<br>(${data.published})</p>`
+        tip.classList.add('on');
+        tip.classList.remove('off'); 
+    }
 
     function hideAll(selector){
         document.querySelectorAll(selector)
@@ -259,5 +308,13 @@
     document.querySelectorAll('.chart-book').forEach(function(el){
         el.onclick = function(){ info(this) }
     })
+
+    document.querySelectorAll('.chart-book')
+        .forEach((element)=>{
+            element.addEventListener('mouseenter',tooltipOn);
+            element.addEventListener('mouseleave',tooltipOff);
+            element.addEventListener('mousemove',tooltip);
+        },)
+    
     </script>
 </html>
