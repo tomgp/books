@@ -58,9 +58,9 @@ const structuredData = years.map(year=>{
     return year;
 }).filter(d=>d.key!='0');
 
-const maxPages = max(years.map(d=>d.pageCount));
+const maxPages = max(years.map(d=>d.pageCount))+5000;
 
-const height = 250;
+const height = 350;
 const margin = {top:25, left:0, bottom:25, right:0};
 const width = 800;
 const plotHeight = height - (margin.top + margin.bottom);
