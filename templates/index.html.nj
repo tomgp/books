@@ -57,12 +57,12 @@
     </div>
     {% for year in years | reverse %}
     <div class="year">
-    <h2>{% if year.key != 0 %}{{ year.key }} {% else %}In progress, unfinished{% endif %}</h2>
+    <h2>{% if year.key != 0 %}{{ year.key }} {% else %}In progress / unfinished{% endif %}</h2>
     <div class="year-stats">{{ year.count }} books {{ year.formattedPageCount }}pp</div>
     <hr>
     {% for month in year.months | reverse %}
     <div class="month" data-month="{{monthName[month.key]}}" data-year="{{year.key}}">
-        <h3>{{ monthName[month.key] }}</h3>
+        <h4>{{ monthName[month.key] }}</h4>
         <ul>
             {% for book in month.data | reverse %}
             <li class="book">
@@ -82,20 +82,19 @@
     {% endfor %}
     <div id="notes">
     <h2>Notes</h2>
-    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I liked them. 
+    <p>Most books are <span data-rating="5" class="rating-word">fine</span>, I like them.</p>
+    <p>
     <span class="rating" data-rating="5" >{{ratingSymbols[0] | safe}}</span> are espescially recomended, 
     <span class="rating" data-rating="4" >{{ratingSymbols[1] | safe}}</span> are recomended if you like that kind of thing,
     <span class="rating" data-rating="2" >{{ratingSymbols[2] | safe}}</span> are only for people who are <i>really</i> into that kind of thing, and
     <span class="rating" data-rating="1" >{{ratingSymbols[3] | safe}}</span> denotes books I feel are best avoided</p>
     <p>Sometimes I read things more than once so they appear more than once.</p>
+    <p>I include books I read to my kids if I read the whole thing to them, if they read some parts themselves or if someone else reads bits of them I don't include the book in the data. Aside: Reading out loud to/ with someone  is a very different experience.</p>
     <p>Publication date (in brackets) is a bit vague, I'm using it as a proxy for when something was written so for eg. Fagels' translation of the Iliad is noted as 800BC (itself a bit vague) rather than when Penguin <i>actually</i> published it. Similarly for career spanning short story collections I've chosen the mid-point.</p>
     <p><a href="reading-list.csv">Data is here (.csv file)</a></p>
     </div>
     </article>
-    <div class="info">Showing <span class="property">all</span> <span class="clear">[clear]</span></div>
     <footer>
-    <p><a href="hyper://f2914714890a60ad2962344a48972f0fc4255b114b17930e6ac0413181f321f8/">Hyperdrive</a></p>
-    <p><a href="https://www.toffeemilkshake.co.uk/books">Website</a></p>
     <p><a href="https://www.toffeemilkshake.co.uk">Tom Pearson</a> &mdash; {{ updated }}</footer></p>
     <div class="tooltip off">
     TOOL
@@ -108,75 +107,18 @@
         tip.style.left = `${e.pageX + 5}px`;
         tip.style.top = `${e.pageY + 5}px`;
     }
+
     function tooltipOff(e){
         tip.classList.add('off');
         tip.classList.remove('on'); 
     }
+
     function tooltipOn(e){
         const data = e.target.dataset
         tip.innerHTML = `<p><strong>${data.title}</strong><br>${data.author}<br>(${data.published})</p>`
         tip.classList.add('on');
         tip.classList.remove('off'); 
     }
-
-    function hideAll(selector){
-        document.querySelectorAll(selector)
-            .forEach(e=>e.style.display = 'none');
-    }
-
-    function showAll(selector){
-        document.querySelectorAll(selector)
-            .forEach(e=>e.style.display = '');
-    }
-
-    function info(el){
-        console.log(el.dataset);
-    }
-
-    function clicked(attr, el){
-        const value = el.getAttribute(attr);
-        hideAll('li.book');
-        hideAll('ul');
-        hideAll('div.month');
-        hideAll('div.year');
-        hideAll('div.year-stats');
-        document.querySelector('.clear').style.display = 'inline-block';
-
-        const selected = document.querySelectorAll(`[${attr}*="${value}"]`);
-        selected.forEach(span=>{
-            //li.book
-            span.parentElement.style.display =  '';
-            //ul
-            span.parentElement.parentElement.style.display =  '';
-            //div.month
-            span.parentElement.parentElement.parentElement.style.display =  '';
-            //div.year
-            span.parentElement.parentElement.parentElement.parentElement.style.display =  '';
-        });
-        document.querySelector('.info .property').innerHTML = `${attr.split('-')[1]} ${value} (${selected.length})`;
-    }
-    function reset(){
-        showAll('*');
-        document.querySelector('.info .property').innerHTML = 'all';
-    }
-
-    document.querySelectorAll('span[data-rating]').forEach(function(el){
-        el.onclick = function(){ clicked('data-rating', this) };
-    });
-
-    document.querySelectorAll('span[data-published]').forEach(function(el){
-        el.onclick = function(){ clicked('data-published', this) };
-    });
-
-    document.querySelectorAll('span[data-author]').forEach(function(el){
-        el.onclick = function(){ clicked('data-author', this) };
-    });
-
-    document.querySelector('.clear').onclick = reset;
-// mouse over behaviour
-    document.querySelectorAll('.chart-book').forEach(function(el){
-        el.onclick = function(){ info(this) }
-    })
 
     document.querySelectorAll('.chart-book')
         .forEach((element)=>{
