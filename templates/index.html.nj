@@ -2,167 +2,30 @@
     <head>
         <title>{{ title }} - Tom Pearson</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.toffeemilkshake.co.uk/css/home.css"> 
         <style>
-        body {
-            font-family: sans-serif;
-            color: rgb(0, 40, 255);
-        }
-        p, ul{
-            line-height: 1.5;
-        }
-        .rating{
-            color:rgb(255, 40, 0);
-        }
-        .rating-word{
-            border-bottom: solid 1px rgb(0,40,255);
-        }
-        .clear:hover{
-            color:white;
-            background:rgb(255,40,0);
-            cursor:pointer;
+        rect.score-1,rect.score-2,rect.score-3{
+            fill:var(--text-colour);
         }
 
-        [data-published]:hover{
-            color:white;
-            background:rgb(255,40,0);
-            cursor:pointer;
-        }
-        [data-rating]:hover{
-            color:white;
-            background:rgb(255,40,0);
-            cursor:pointer;
-        }
-        [data-rating]:hover svg{
-            fill: white;
-            cursor: pointer;
-        }
-        [data-author]:hover{
-            color:white;
-            background:rgb(255,40,0);
-            cursor:pointer;
-        }
-        ul {
-            padding: 0px;
-            margin: 0px;
-            list-style-type: none;
+        rect.score-4{
+            fill:var(--background-colour);
+            stroke:var(--text-colour);
         }
 
-        h1 { }
-
-        h2 {
-            color: rgb(255, 40, 0);
-            margin-top:60px;
-            margin-bottom: 0px;
+        rect.score-5{
+            fill:var(--link-colour);
+            stroke:none;
         }
-        .year-stats{
-            color: rgb(255, 40, 0);
-        }
-
-        h3 { 
-            color:rgb(255, 40, 0);
-            font-size: small;
-            font-weight: normal;
-            font-style: italic;
-            margin-bottom: 4px;
-        }
-        li{
-            padding-bottom:2px;
-        }
-        .book-title{
-            font-weight:bold;
-        }
-        .book-author{
-            font-style:italic;
-        }
-        a{
-            color:rgb(255,40,0);
-        }
-        .year-stats{
-            padding-bottom:4px;
-        }
-        hr{
-            border: none;
-            border-bottom: 1px solid rgb(255,40,0);
-        }
-        article{
-            margin-bottom: 100px;
-            max-width:800px;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        .info{
-            position:fixed;
-            bottom:0px;
-            right:0px;
-            background:white;
-            padding:10px;
-        }
-        .property{
-            border-bottom: 1px solid rgb(0,40,255);
-        }
-        .clear{
-            font-weight:bold;
-            color:rgb(255,40,0);
-            display:none;
-        }
-        .icon{
-            fill:rgb(255,40,0);
-        }
-        .icon.teardrop{
-            margin-right:-3px;
-            margin-left:-2px;
-        }
-        .reading-shelf{
-            width:100vw;
-            overflow-y:scroll;
-            padding-bottom:20px;
-        }
-        svg.shelf{
-
-        }
-        .score-5{
-            fill:rgb(255,40,0);
-            stroke:white;
-            stroke-width:1;
-        }
-        .score-0, .score-1, .score-2, .score-3, .score-4{
-            fill:rgb(0,40,255);
-            stroke:white;
-            stroke-width:1;
-        }
-        .score-0:hover,
-        .score-1:hover,
-        .score-2:hover,
-        .score-3:hover,
-        .score-4:hover{
-            stroke:rgb(0,40,255);
-        }
-        .score-5:hover{
-            stroke:rgb(255,40,0);
-        }
-
-        .axis-label{
-            stroke: rgb(0,40,255);
-            fill: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .chart-book:hover{
-            fill:white;
-        }
-        footer{
-        padding-bottom:100px;
-        }
-
         .tooltip{
             position: absolute;
             pointer-events: none;
             font-size:10px;
-            background-color:white;
-            border:1px solid rgb(0,40,255);
+            background-color: var(--background-colour);
+            border:1px solid var(--text-colour);
             padding-left:10px;
             padding-right:10px;
-            box-shadow: 10px 10px 0px 0px rgb(0,40,255);
+            box-shadow: 10px 10px 0px 0px var(--text-colour);
         }
 
         .tooltip.off{
@@ -171,6 +34,12 @@
 
         .tooltip.on{
             display: inline-block;
+        }
+
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
         }
         </style>
     </head>
