@@ -121,14 +121,17 @@ const feed = {
         "name": "Tom Pearson",
         "url": "https://www.toffeemilkshake.co.uk"
     },
-    "items": books.map((book, i)=>{
-        return {
-            "date_published": new Date(book.date),
-            "id": `${i}`,
-            "content_texttitle": `${book.title} by ${book.authors.split(',').join(', ')} (${book.published})`,
-            "url": "https://www.toffeemilkshake.co.uk/books"
-        }
-    }).reverse()
+    "items": books
+        .filter(book => book.date)
+        .map((book, i)=>{
+            return {
+                "date_published": new Date(book.date),
+                "id": `${i}`,
+                "content_texttitle": `${book.title} by ${book.authors.split(',').join(', ')} (${book.published})`,
+                "url": "https://www.toffeemilkshake.co.uk/books"
+            }
+        })
+        .reverse()
 }
 
 writeFileSync('./feed.json', JSON.stringify(feed) );
