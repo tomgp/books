@@ -3,6 +3,7 @@
         <title>{{ title }} - Tom Pearson</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/home.css"> 
+        <link rel="alternate" title="Book feed" type="application/json" href="https://www.toffeemilkshake.co.uk/books/feed.json">
         <style>
         rect.score-1,rect.score-2,rect.score-3{
             fill:var(--text-colour);

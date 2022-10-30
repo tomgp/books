@@ -96,7 +96,7 @@ readDateStacks.reverse().forEach((year,i)=>{
         return book;
     })
 });
-console.log(readDateStacks.reverse());
+
 writeFileSync(
     './index.html', 
     render('./templates/index.html.nj', {
@@ -109,5 +109,29 @@ writeFileSync(
         updated: String(new Date()),
     })
 );
+
+//JSON feed 
+
+const feed = {
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Tom's books list",
+    "home_page_url": "https://www.toffeemilkshake.co.uk/books",
+    "feed_url": "https://www.toffeemilkshake.co.uk/books/feed.json",
+    "author":{
+        "name": "Tom Pearson",
+        "url": "https://www.toffeemilkshake.co.uk"
+    },
+    "items": books.map((book, i)=>{
+        return {
+            "date_published": new Date(book.date),
+            "id": `${i}`,
+            "content_texttitle": `${book.title} by ${book.authors.split(',').join(', ')} (${book.published})`,
+            "url": "https://www.toffeemilkshake.co.uk/books"
+        }
+    }).reverse()
+}
+
+writeFileSync('./feed.json', JSON.stringify(feed) );
+
 
 //the end
